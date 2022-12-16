@@ -20,3 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+################################### these routes are just for testing database connection #####################
+Route::get('/test', [App\Http\Controllers\ForTraining::class, 'show_courses'])->name('show.courses');
