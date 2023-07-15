@@ -25,10 +25,10 @@ class CourseAddRequest extends FormRequest
     {
         return [
             'name'=>'required|max:100|unique:courses,name',
-            'dep_id'=>'required|numeric:courses,dep_id',
-            'lev_id'=>'required|numeric:courses,lev_id',
-            'lecr_id'=>'required|numeric:courses,lecr_id',
-            'type'=>'required|:departments:courses,type',
+            'dep_id'=>'required|numeric',
+            'lev_id'=>'required|numeric',
+            'type'=>'required',
+            'time_units_in_week' => 'required|numeric',
         ];
     }
 
@@ -40,11 +40,11 @@ class CourseAddRequest extends FormRequest
             'name.unique'=>'الإسم موجود مسبقاً',
             'dep_id.required'=>'يجب إدخال القسم',
             'lev_id.required'=>'يجب إدخال المستوى',
-            'lecr_id.required'=>'يجب إدخال المحاضر',
             'dep_id.numeric'=>'هناك خطأ في إدخال القسم',
             'lev_id.numeric'=>'هناك خطأ في إدخال المستوى',
-            'lecr_id.numeric'=>'هناك خطأ في إدخال المحاضر',
             'type.required'=>'يجب إدخال النوع',
+            'time_units_in_week.required'=>'يجب إدخال عدد المحاضرات الاسبوعية',
+            'time_units_in_week.numeric'=>'  عدد المحاضرات الاسبوعية يجب أن يكون رقم'
         ];
     }
 }

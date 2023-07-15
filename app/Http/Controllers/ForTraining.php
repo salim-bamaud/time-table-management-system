@@ -8,6 +8,7 @@ use App\Models\Department;
 use App\Models\Level;
 use App\Models\Lecturer;
 use App\Models\Room;
+use App\Models\Time_table;
 
 class ForTraining extends Controller
 {
@@ -29,6 +30,9 @@ class ForTraining extends Controller
         ############################ get rooms ######################################
         $rooms = Room::select('id','name','type','seats_num')->get();
         #################################################################################
-        return view('test',compact('courses','departments','levels','lecturers','rooms'));
+        ############################ get time-tables ######################################
+        $timetables = Time_table::select('id','name','dep_id','lev_id')->get();
+        #################################################################################
+        return view('test',compact('courses','departments','levels','lecturers','rooms','timetables'));
     }
 }

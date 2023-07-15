@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">إضافة قاعة</div>
+                <div class="card-header"> {{__('site.add-room')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -22,33 +22,33 @@
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                                 <br>
-                                <label> نوع القاعة القاعة </label>
+                                <label> {{__('site.room-type')}} </label>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="customRadioInline1" name="type" class="custom-control-input" value="0">
-                                    <label class="custom-control-label" for="customRadioInline1"> قاعة محاضرات عادية </label>
+                                    <label class="custom-control-label" for="customRadioInline1"> {{__('site.room')}} </label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="1">
-                                    <label class="custom-control-label" for="customRadioInline2">  Lap معمل </label>
+                                    <label class="custom-control-label" for="customRadioInline2"> {{__('site.lap')}} </label>
                                     <br>
                                     @error('type')
                                     <small class="form-text text-danger">{{$message}}</small>
                                     @enderror
                                 </div>
-                                <label> عدد المقاعد في القاعة </label>
+                                <label> {{__('site.num-of-seats-in-room')}} </label>
                                 <input type="number" class="form-control" name="seats_num" placeholder="100">
                                     @error('seats_num')
                                     <small class="form-text text-danger">{{$message}}</small>
                                     @enderror
                                 <br>
-                                <button type="submit" class="btn btn-primary">حفظ</button>
+                                <button type="submit" class="btn btn-primary"> {{__('site.save')}} </button>
                             </div>
                         </form>
 
                     </div>
             </div>
             <br>
-            <a href="show" class="btn btn-info"> عرض القاعات </a>
+            <a href="show" class="btn btn-info">  {{__('site.show-rooms')}}  </a>
         </div>
     </div>
 </div>

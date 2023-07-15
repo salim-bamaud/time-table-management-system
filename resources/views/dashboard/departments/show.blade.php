@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">الأقسام</div>
+                <div class="card-header"> {{__('site.Departments')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -16,8 +16,8 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">الإسم</th>
-                                <th scope="col">الإجراءات</th>
+                                <th scope="col"> {{__('site.name')}} </th>
+                                <th scope="col"> {{__('site.actions')}} </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,8 +25,8 @@
                             <tr>                             
                                 <td>{{$department->name}}</td>
                                 <td>
-                                    <a href="edit/{{$department->id}}" class="btn btn-success">تعديل</a> 
-                                    <a href="delete/{{$department->id}}" class="btn btn-danger">حذف</a>
+                                    <a href="edit/{{$department->id}}" class="btn btn-success"> {{__('site.edit')}} </a> 
+                                    <a href="delete/{{$department->id}}" class="btn btn-danger"> {{__('site.delete')}} </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -35,7 +35,7 @@
                     </div>
             </div>
             <br>
-            <a href="create" class="btn btn-primary">إضافة قسم</a>
+            <a href="create" class="btn btn-primary">  {{__('site.add-department')}}  </a>
         </div>
     </div>
 </div>

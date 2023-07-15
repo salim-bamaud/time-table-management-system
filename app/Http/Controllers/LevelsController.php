@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Level;
 use App\Models\Department;
+use App\Models\Time_table;
 use App\Http\Requests\LevelAddRequest;
 use App\Http\Requests\LevelEditRequest;
 
@@ -30,6 +31,16 @@ class LevelsController extends Controller
     public function show(){
         $levels = Level::select('id','name','dep_id','students_num')->get();
         return view('dashboard.levels.show',compact('levels'));
+    }
+
+    public function show_table($id){
+        $table = Time_table::where('lev_id',$id)->first();
+        if ($table) {
+            return redirect(route('tables.show-table',['id'=>$table->id]));
+        } else {
+            return redirect()->back()->with(['message'=>'لم يتم انشاء الجدول ']);
+        }
+        
     }
 
     public function edit($id){

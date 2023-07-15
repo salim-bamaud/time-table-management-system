@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">إضافة مستوى</div>
+                <div class="card-header"> {{__('site.add-level')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -16,13 +16,13 @@
                         <form method="POST" action="{{route('levels.store')}}">
                             @csrf
                             <div class="form-group">
-                                <label> أسم المستوى </label>
+                                <label> {{__('site.level-name')}}  </label>
                                 <input type="text" class="form-control" name="name" placeholder="Fourth level">
                                 @error('name')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                                 <br>
-                                <label>  التخصص </label>
+                                <label>  {{__('site.Department')}} </label>
                                   <select class="custom-select" name="dep_id">
                                       @foreach ($departments as $department)
                                         <option value="{{$department->id}}">{{$department->name}}</option>
@@ -32,7 +32,7 @@
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                                 <br>
-                                <label> عدد الطلاب  </label>
+                                <label> {{__('site.numm-of-students')}} </label>
                                 <input type="number" class="form-control" name="students_num" placeholder="80">
                                 @error('students_num')
                                     <small class="form-text text-danger">{{$message}}</small>
@@ -45,7 +45,7 @@
                     </div>
             </div>
             <br>
-            <a href="show" class="btn btn-info"> عرض المستويات </a>
+            <a href="show" class="btn btn-info"> {{__('site.show-levels')}}  </a>
         </div>
     </div>
 </div>

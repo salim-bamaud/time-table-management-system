@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html dir="{{LaravelLocalization::getCurrentLocaleDirection()}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,30 +14,33 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../public/vue.js"></script>
+    <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+    @vite('resources/css/app.css')
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Time table management system
+                    {{__('site.Time table management system')}}
                 </a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -60,7 +63,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();">{{__('Logout')}}
                                         {{ __('Logout') }}
                                     </a>
 
@@ -70,24 +73,43 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+                    
                 </div>
             </div>
+            <ul class="menu flex space-x-4 bg-white"> @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) <li> <a class="block py-2 px-4 rounded-md text-gray-800 hover:bg-gray-300 transition duration-300 ease-in-out" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"> {{ $properties['native'] }} </a> </li> @endforeach </ul>
         </nav>
-
+        <nav class="flex bg-gray-900">
+            <a href="/home" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('home')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Home')}}</span>
+            </a>
+            <a href="/tables/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('tables.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Time-tables')}}</span>
+            </a>
+            <a href="/rooms/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('rooms.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Rooms')}}</span>
+            </a>
+            <a href="/departments/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('departments.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Departments')}}</span>
+            </a>
+            <a href="/levels/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('levels.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Levels')}}</span>
+            </a>
+            <a href="/lecturers/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('lecturers.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Lecturers')}}</span>
+            </a>
+            <a href="/courses/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('courses.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Courses')}}</span>
+            </a>
+            <a href="/quorum/show" class="flex items-center justify-center py-4 px-6 text-gray-300 hover:text-white {{ (request()->routeIs('quorum.show')) ? 'text-white bg-gray-800' : '' }}">
+                <span class="font-medium">{{__('site.Quorum-tables')}}</span>
+            </a>
+        </nav>
         <main class="py-4">
+            <div>
              @yield('content')
-             <footer class="py-3 my-4">
-                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-                  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-                </ul>
-                <p class="text-center text-muted">© 2022 Company, Inc</p>
-              </footer>
+            </div>
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

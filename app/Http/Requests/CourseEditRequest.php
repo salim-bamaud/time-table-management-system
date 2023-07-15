@@ -27,8 +27,8 @@ class CourseEditRequest extends FormRequest
             'name'=>'required|max:100|:courses,name',
             'dep_id'=>'required|numeric:courses,dep_id',
             'lev_id'=>'required|numeric:courses,lev_id',
-            'lecr_id'=>'required|numeric:courses,lecr_id',
             'type'=>'required:courses,type',
+            'time_units_in_week' => 'required|numeric',
         ];
     }
 
@@ -39,11 +39,11 @@ class CourseEditRequest extends FormRequest
             'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
             'dep_id.required'=>'يجب إدخال القسم',
             'lev_id.required'=>'يجب إدخال المستوى',
-            'lecr_id.required'=>'يجب إدخال المحاضر',
             'dep_id.numeric'=>'هناك خطأ في إدخال القسم',
             'lev_id.numeric'=>'هناك خطأ في إدخال المستوى',
-            'lecr_id.numeric'=>'هناك خطأ في إدخال المحاضر',
             'type.required'=>'يجب إدخال النوع',
+            'time_units_in_week.required'=>'يجب إدخال عدد المحاضرات الاسبوعية',
+            'time_units_in_week.numeric'=>'  عدد المحاضرات الاسبوعية يجب أن يكون رقم'
         ];
     }
 }

@@ -24,8 +24,12 @@ class LecturerEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:100|:lecturers,name',
-            'short_name'=>'required|max:20,short_name',
+            'name'=>['required',
+                    'max:100',
+                    'unique:lecturers,name,'. $this->id],
+            'short_name'=>['required',
+                           'max:20',
+                           'unique:lecturers,short_name,'. $this->id],
         ];
     }
 
@@ -34,8 +38,10 @@ class LecturerEditRequest extends FormRequest
         return [
             'name.required'=>'يجب إدخال الإسم',
             'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
+            'name.unique'=>'الإسم موجود مسبقاً',
             'short_name.required'=>'الإسم المختصر مطلوب',
             'short_name.max'=>'الإسم المختصر يجب أن لا يزيد عن 20 حرف ',
+            'short_name.unique'=>'الإسم المختصر موجود مسبقاً',
         ];
     }
 }

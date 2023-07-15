@@ -9,7 +9,7 @@ class Time_unit extends Model
 {
     use HasFactory;
     protected $table = "time_units";
-    protected $fillable = ['number','dep_id','lev_id','lecr_id','cours_id','room_id','time_table_id','label','created_at','updated_at'];
+    protected $fillable = ['number','dep_id','lev_id','lecr_id','course_id','room_id','label','time_table_id','created_at','updated_at'];
     protected $hidden = ['created_at','updated_at'];
     public $timestamps = true;
 
@@ -39,4 +39,11 @@ class Time_unit extends Model
         return $this-> belongsTo('App\Models\Course','course_id');
     }
     ################## end course relation ###########
+
+
+    ################# timetable relation ###############
+    public function timetable(){
+        return $this-> belongsTo('App\Models\Time_table','time_table_id');
+    }
+    ################## end timetable relation ###########
 }

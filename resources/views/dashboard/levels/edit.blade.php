@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">تعديل مستوى</div>
+                <div class="card-header"> {{__('site.edit-level')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -16,12 +16,12 @@
                         <form method="POST" action="{{route('levels.update',$level->id)}}">
                             @csrf
                             <div class="form-group">
-                                <label> المستوى  </label>
+                                <label> {{__('site.level-name')}}  </label>
                                 <input type="text" class="form-control" name="name" value="{{$level->name}}">
                                 @error('name')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                                <label>  التخصص </label>
+                                <label>  {{__('site.Department')}} </label>
                                 <br>
                                   <select class="custom-select" name="dep_id">
                                       @foreach ($departments as $department)
@@ -36,13 +36,13 @@
                                 @error('dep_id')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                                <label> عدد الطلاب </label>
+                                <label> {{__('site.numm-of-students')}}  </label>
                                 <input type="text" class="form-control" name="students_num" value="{{$level->students_num}}">
                                 @error('students_num')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                                 <br>
-                                <button type="submit" class="btn btn-primary">حفظ</button>
+                                <button type="submit" class="btn btn-primary"> {{__('site.save')}} </button>
                             </div>
                         </form>
 

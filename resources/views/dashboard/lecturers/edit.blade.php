@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">تعديل محاضر</div>
+                <div class="card-header"> {{__('site.edit-lecturere')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -16,12 +16,12 @@
                         <form method="POST" action="{{route('lecturers.update',$lecturer->id)}}">
                             @csrf
                             <div class="form-group">
-                                <label> الإسم  </label>
+                                <label> {{__('site.name')}}  </label>
                                 <input type="text" class="form-control" name="name" value="{{$lecturer->name}}">
                                 @error('name')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
-                                <label>  الإسم المختصر </label>
+                                <label>  {{__('site.short-name')}}  </label>
                                 <input type="text" class="form-control" name="short_name" value="{{$lecturer->short_name}}">
                                 <br>
                                 @error('short_name')
@@ -29,7 +29,13 @@
                                 @enderror
                                 <br>
                                 <br>
-                                <button type="submit" class="btn btn-primary">حفظ</button>
+                                <label>  {{__('site.contracting-case')}}   </label>
+                                <select name="contract_status">
+                                    <option value="0"> {{__('site.constant')}} </option>
+                                    <option value="1"> {{__('site.contracred')}} </option>
+                                </select>
+                                <br><br>
+                                <button type="submit" class="btn btn-primary"> {{__('site.save')}} </button>
                             </div>
                         </form>
 

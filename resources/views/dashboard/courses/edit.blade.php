@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">تعديل كورس</div>
+                <div class="card-header"> {{__('site.edit-course')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -16,53 +16,30 @@
                         <form method="POST" action="{{route('courses.update',$course->id)}}">
                             @csrf
                             <div class="form-group">
-                                <label> أسم الكورس </label>
+                                <label> {{__('site.coursename')}} </label>
                                 <input type="text" class="form-control" name="name" value="{{$course->name}}">
                                 @error('name')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                                 <br>
-                                <label>  النوع </label>
+                                <label> {{__('site.num-of-lectures-in-week')}} </label>
+                                <input type="number" class="form-control" name="time_units_in_week" value="{{$course->time_units_in_week}}">
+                                @error('time_units_in_week')
+                                    <small class="form-text text-danger">{{$message}}</small>
+                                @enderror
+                                <br>
+                                <label>  {{__('site.type')}} </label>
                                   <select class="custom-select" name="type">
-                                    <option value="0">نضري</option>
-                                    <option value="1">عملي</option>
+                                    <option value="0"> {{__('site.theoretical-just')}} </option>
+                                    <option value="1"> {{__('site.course-have-lap')}} </option>
                                   </select>
                                 @error('type')
                                     <small class="form-text text-danger">{{$message}}</small>
                                 @enderror
                                 <br>
-                                <label>  القسم  </label>
-                                    <select class="custom-select" name="dep_id">
-                                      @foreach ($departments as $department)
-                                        <option value="{{$department->id}}">{{$department->name}}</option>
-                                      @endforeach
-                                    </select>
-                                @error('dep_id')
-                                    <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
+                                @livewire('cascading-dropdown')
                                 <br>
-                                <label>  المستوى  </label>
-                                <select class="custom-select" name="lev_id">
-                                    @foreach ($levels as $level)
-                                      <option value="{{$level->id}}">{{$level->name}}</option>
-                                    @endforeach
-                                  </select>
-                                @error('lev_id')
-                                    <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
-                                <br>
-                                <label>  المحاضر  </label>
-                                <select class="custom-select" name="lecr_id">
-                                    @foreach ($lecturers as $lecturer)
-                                      <option value="{{$lecturer->id}}">{{$lecturer->name}}</option>
-                                    @endforeach
-                                  </select>
-                                @error('lecr_id')
-                                    <small class="form-text text-danger">{{$message}}</small>
-                                @enderror
-                                <br>
-                                <br>
-                                <button type="submit" class="btn btn-primary">حفظ</button>
+                                <button type="submit" class="btn btn-primary">{{__('site.save')}} </button>
                             </div>
                         </form>
 

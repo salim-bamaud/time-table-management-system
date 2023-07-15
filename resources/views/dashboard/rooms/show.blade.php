@@ -4,8 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <a href="findemptyrooms" class="btn btn-primary"> {{__('site.find-empty-room')}} </a> 
+            <a href="findemptylaps" class="btn btn-primary"> {{__('site.find-empty-lap')}} </a> 
+            <a href="#" class="btn btn-primary"> {{__('site.show-laps-table')}} </a>
+            <br><br>
             <div class="card">
-                <div class="card-header">القاعات</div>
+                <div class="card-header">{{__('site.Rooms')}}</div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -16,10 +20,10 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">الإسم</th>
-                                <th scope="col">النوع</th>
-                                <th scope="col">عدد المقاعد</th>
-                                <th scope="col">الإجراءات</th>
+                                <th scope="col">{{__('site.name')}}</th>
+                                <th scope="col">{{__('site.type')}}</th>
+                                <th scope="col">{{__('site.num-of-seats-in-room')}}</th>
+                                <th scope="col">{{__('site.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -28,15 +32,16 @@
                                 <td>{{$room->name}}</td>
                                 <td>
                                     @if ($room->type == 0)
-                                        قاعة
+                                        {{__('site.Room')}}
                                         @else
-                                        معمل
+                                        {{__('site.lap')}}
                                     @endif
                                 </td>
                                 <td>{{$room->seats_num}}</td>
-                                <td>
-                                    <a href="edit/{{$room->id}}" class="btn btn-success">تعديل</a> 
-                                    <a href="delete/{{$room->id}}" class="btn btn-danger">حذف</a>
+                                <td>                                    
+                                    <a href="show-table/{{$room->id}}" class="btn btn-primary"> {{__('site.show-table')}} </a> 
+                                    <a href="edit/{{$room->id}}" class="btn btn-success">{{__('site.edit')}}</a> 
+                                    <a href="delete/{{$room->id}}" class="btn btn-danger">{{__('site.delete')}}</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -45,7 +50,8 @@
                     </div>
             </div>
             <br>
-            <a href="create" class="btn btn-primary">إضافة قاعة</a>
+            <a href="create" class="btn btn-primary"> {{__('site.add-room')}} </a>
+            <a class="btn btn-success" href="{{route('rooms.export')}}"> {{__('site.export-to-pdf')}} </a>
         </div>
     </div>
 </div>

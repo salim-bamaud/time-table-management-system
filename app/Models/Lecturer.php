@@ -9,14 +9,19 @@ class Lecturer extends Model
 {
     use HasFactory;
     protected $table = "lecturers";
-    protected $fillable = ['name','short_name','created_at','updated_at'];
+    protected $fillable = ['name','collage','dep_id','degree','short_name','contract_status','created_at','updated_at'];
     protected $hidden = ['created_at','updated_at'];
     public $timestamps = true;
 
 
+    ################## department relation ###############
+    public function department(){
+        return $this-> belongsTo('App\Models\Department','dep_id');
+    }
+    ################## end department relation ###########
     ################## courses relation ###############
     public function courses(){
-        return $this->hasMany('App\Models\Course','lecr_id');
+        return $this->hasMany('App\Models\Course','lect_id');
     }
     ################## end course relation ###########
     ################## time units relation ###############

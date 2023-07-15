@@ -23,4 +23,14 @@ class Time_table extends Model
         return $this-> belongsTo('App\Models\Level','lev_id');
     }
     ################## end level relation ###########
+
+    ################## time unnits relation ###############
+    public function time_units(){
+        return $this->hasMany('App\Models\Time_unit','time_table_id');
+    }
+    ################## end time units relation ###########
+    public function delete(){
+        $this->time_units()->delete();
+        parent::delete();
+    }
 }

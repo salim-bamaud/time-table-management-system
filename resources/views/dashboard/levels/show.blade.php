@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">المستويات</div>
+                <div class="card-header"> {{__('site.Levels')}} </div>
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -13,13 +13,18 @@
                             {{Session::get('success')}}
                         </div>
                         @endif
+                        @if (Session::has('message'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('message')}}
+                        </div>
+                        @endif
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">المستوى</th>
-                                <th scope="col">التخصص</th>
-                                <th scope="col">عدد الطلاب</th>
-                                <th scope="col">الإجراءات</th>
+                                <th scope="col"> {{__('site.level')}} </th>
+                                <th scope="col"> {{__('site.Department')}} </th>
+                                <th scope="col"> {{__('site.numm-of-students')}} </th>
+                                <th scope="col"> {{__('site.actions')}} </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -29,8 +34,9 @@
                                 <td>{{$level->department->name}}</td>
                                 <td>{{$level->students_num}}</td>
                                 <td>
-                                    <a href="edit/{{$level->id}}" class="btn btn-success">تعديل</a> 
-                                    <a href="delete/{{$level->id}}" class="btn btn-danger">حذف</a>
+                                    <a href="show-table/{{$level->id}}" class="btn btn-success"> {{__('site.show-table')}} </a> 
+                                    <a href="edit/{{$level->id}}" class="btn btn-success"> {{__('site.edit')}} </a> 
+                                    <a href="delete/{{$level->id}}" class="btn btn-danger"> {{__('site.delete')}} </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -39,7 +45,7 @@
                     </div>
             </div>
             <br>
-            <a href="create" class="btn btn-primary">إضافة مستوى</a>
+            <a href="create" class="btn btn-primary"> {{__('site.add-level')}} </a>
         </div>
     </div>
 </div>

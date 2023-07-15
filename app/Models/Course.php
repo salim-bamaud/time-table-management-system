@@ -9,7 +9,7 @@ class Course extends Model
 {
     use HasFactory;
     protected $table = "courses";
-    protected $fillable = ['name','dep_id','lev_id','lecr_id','type','created_at','updated_at'];
+    protected $fillable = ['name','dep_id','time_units_in_week','lect_id','lev_id','type','created_at','updated_at'];
     protected $hidden = ['created_at','updated_at'];
     public $timestamps = true;
 
@@ -20,14 +20,13 @@ class Course extends Model
     ################## end department relation ###########
     ################## level relation ###############
     public function level(){
-        return $this-> belongsTo('App\Models\Level','dep_id');
+        return $this-> belongsTo('App\Models\Level','lev_id');
     }
-    ################## end level relation ###########
-    ################## lecturer relation ###############
+    ################## end lecturer relation ###########
     public function lecturer(){
-        return $this-> belongsTo('App\Models\Lecturer','lecr_id');
+        return $this-> belongsTo('App\Models\Lecturer','lect_id');
     }
-    ################## end level relation ###########
+    ################## end lecturer relation ###########    
     ################## time unnits relation ###############
     public function time_units(){
         return $this->hasMany('App\Models\Time_unit','course_id');

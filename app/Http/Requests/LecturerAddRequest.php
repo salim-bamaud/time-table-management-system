@@ -16,16 +16,14 @@ class LecturerAddRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
             'name'=>'required|max:100|unique:lecturers,name',
-            'short_name'=>'required|max:20|:lecturers,short_name',
+            'short_name'=>'required|max:20|unique:lecturers,short_name',
+            'collage'=>'required|max:90',
+            'dep_id'=>'required|max:20',
+            'degree'=>'required|max:50',
         ];
     }
 
@@ -33,9 +31,13 @@ class LecturerAddRequest extends FormRequest
     {
         return [
             'name.required'=>'يجب إدخال الإسم',
+            'collage.required'=>'يجب إدخال أسم الكلية',
+            'dep_id.required'=>'يجب إدخال القسم',
+            'degree.required'=>'يجب إدخال الدرجة العلمية',
             'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
             'name.unique'=>'الإسم موجود مسبقاً',
             'short_name.required'=>'الإسم المختصر مطلوب',
+            'short_name.unique'=>'الإسم المختصر موجود مسبقاً',
             'short_name.max'=>'الإسم المختصر يجب أن لا يزيد عن 20 حرف ',
         ];
     }
