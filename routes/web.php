@@ -18,13 +18,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
  ], function()
 {
 	
+        Route::redirect('/', '/home', 301);
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-	
-
         
-################################### this route is just for testing #####################
-Route::get('/test', [App\Http\Controllers\ForTraining::class, 'show_courses'])->name('show.courses');
-
+        ################################### this route is for users #####################
+        Route::resource('user', App\Http\Controllers\Dashboard\UserController::class)->except(['show']);
 
 ################################### Rooms routes #######################
 Route::prefix('rooms')->group(function () {
@@ -123,8 +121,8 @@ Route::get('/cascading-dropdown', App\Http\Livewire\CascadingDropdown::class)->n
 
 Route::get('/schedule', App\Http\Livewire\Scheules::class)->name('schedules');
 
-});
-
 Auth::routes();
+
+});
 
 
