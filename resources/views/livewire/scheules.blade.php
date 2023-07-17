@@ -20,10 +20,27 @@
                             <select wire:model="schedule.{{$day}}.{{$time}}.{{'course'}}">
                                 <option value="-" selected>{{__('site.Course')}}</option>
                                 @foreach ($courses as $course)
-                                    <option value="{{$course->id}}"> {{$course->name}} </option>
+                                    <option value="{{$course->id}}"
+                                        {{-- @foreach($days as $day)
+                                            @foreach($times as $time)
+                                                @if ($course->id == $schedule[$day][$time]['course'] && $course->time_units_in_week == 1 )
+                                                style="background-color: red;"
+                                                @endif
+                                            @endforeach
+                                        @endforeach --}}
+                                        > {{$course->name}} </option>
                                 @endforeach
                             </select>
-                            
+                            {{-- @php
+                                foreach ($courses as $course) {
+                                    if ($course->id == $schedule[$day][$time]['course']) {
+                                        if ($course->time_units_in_week == 1) {
+                                            // $courses == $courses->forget($course->id);
+                                        }
+                                    }
+                                }
+                            @endphp --}}
+                                
                             @if (!is_null($schedule[$day][$time]['course'])&&($schedule[$day][$time]['course']!="-")&&($schedule[$day][$time]['course']!="discussion"))
                             <select wire:model="schedule.{{$day}}.{{$time}}.{{'teacher'}}">
                                 <option value="" >{{__('site.Lecturer')}}</option>
@@ -33,6 +50,9 @@
                                             {{-- @if ($courses->where('id',$schedule[$day][$time]['course'])->first()->lecturer==$teacher)
                                                 selected
                                             @endif --}}
+                                            @if ($teacher->courses->contains('id',$schedule[$day][$time]['course']))
+                                            style="background-color: lightgreen;"
+                                            @endif
                                             > {{$teacher->name}} </option>
                                         @endif
                                 @endforeach

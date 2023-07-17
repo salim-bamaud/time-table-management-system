@@ -13,6 +13,18 @@
                             {{Session::get('success')}}
                         </div>
                         @endif
+
+                        <div class="form-group">
+                            <label> {{__('site.Department')}} :</label>
+                            <select class="form-control" id="department">
+                                <option value=""> {{__('site.all')}} </option>
+                                @foreach ($departments as $department)
+                                    <option value="{{$department->id}}">{{$department->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
                         <table class="table">
                             <thead>
                             <tr>
@@ -25,7 +37,7 @@
                             </thead>
                             <tbody>
                             @foreach ($lecturers as $lecturer )
-                            <tr style="white-space: nowrap">                             
+                            <tr style="white-space: nowrap" data-department="{{$lecturer->dep_id}}">                             
                                 <td>{{$lecturer->name}}</td>
                                 <td>{{$lecturer->short_name}}</td>
                                 <td>{{$lecturer->collage}}</td>
@@ -49,4 +61,18 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#department').change(function() {
+            var dep_id = $(this).val();
+            $('tbody tr').each(function() {
+                if (dep_id == "" || $(this).data('department') == dep_id) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 @endsection

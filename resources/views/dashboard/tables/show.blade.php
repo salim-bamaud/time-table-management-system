@@ -30,7 +30,8 @@
                                 <td>{{$table->level->name}}</td>
                                 <td>
                                     <a href="show-table/{{$table->id}}" class="btn btn-primary">{{__('site.show')}}</a>
-                                    <a href="edit/{{$table->id}}" class="btn btn-success">{{__('site.edit')}}</a> 
+                                    {{-- <a href="edit/{{$table->id}}" class="btn btn-success">{{__('site.edit')}}</a>  --}}
+                                    <a href="print/{{$table->id}}" class="btn btn-success">{{__('site.print')}}</a>
                                     <a href="delete/{{$table->id}}" class="btn btn-danger">{{__('site.delete')}}</a>
                                                                     </td>
                             </tr>

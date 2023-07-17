@@ -19,6 +19,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 {
 	
         Route::redirect('/', '/home', 301);
+        Route::redirect('/register', '/login' , 400)->name('redirect');
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         
         ################################### this route is for users #####################
@@ -32,6 +33,7 @@ Route::prefix('rooms')->group(function () {
     Route::get('findemptyrooms','App\Http\Controllers\RoomsController@findemptyrooms')->name('rooms.findemptyrooms');
     Route::get('findemptyroom/{number}','App\Http\Controllers\RoomsController@findemptyroom')->name('rooms.findemptyroom');
     Route::get('findemptylaps','App\Http\Controllers\RoomsController@findemptylaps')->name('rooms.findemptylaps');
+    Route::get('show-laps-table','App\Http\Controllers\RoomsController@show_laps_table');
     Route::get('findemptylap/{number}','App\Http\Controllers\RoomsController@findemptylap')->name('rooms.findemptylap');
     Route::get('show-table/{id}','App\Http\Controllers\RoomsController@show_table')->name('rooms.show-table');
     Route::get('edit/{id}','App\Http\Controllers\RoomsController@edit')->name('rooms.edit');
@@ -113,6 +115,7 @@ Route::prefix('tables')->group(function () {
     Route::get('edit/{id}','App\Http\Controllers\TablesController@edit')->name('tables.edit');
     Route::post('update/{id}','App\Http\Controllers\TablesController@update')->name('tables.update');
     Route::get('delete/{id}','App\Http\Controllers\TablesController@delete')->name('tables.delete');
+    Route::get('print/{id}','App\Http\Controllers\TablesController@export_in_pdf');
 
 });
 ################################## end Courses routes #################### 

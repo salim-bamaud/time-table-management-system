@@ -33,11 +33,10 @@ class RoomEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'يجب إدخال الإسم',
-            'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
-
-            'type.required'=>'يجب إختيار نوع القاعة',
-            'seats_num.required'=>'يجب إدخال عدد المقاعد في القاعة',
+            'name.required'=>__("site.name-required"),
+            'name.max'=>__('site.max-100'),
+            'type.required'=>__('site.room-type-required'),
+            'seats_num.required'=>__('site.seats-num-required'),
         ];
     }
 }

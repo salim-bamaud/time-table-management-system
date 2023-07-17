@@ -9,6 +9,8 @@ use App\Models\Department;
 use App\Models\Level;
 use App\Models\Lecturer;
 use App\Models\Room;
+use App\Models\Time_unit;
+use PDF;
 
 class TablesController extends Controller
 {
@@ -28,6 +30,16 @@ class TablesController extends Controller
         $level = Level::where('id',$request->lev_id)->first();
         $rooms = Room::where('seats_num', '>=' , $level->students_num)->get();
         return view('dashboard.tables.create-table',compact('courses','lecturers','rooms','department','level'));
+    }
+
+
+    public function export_in_pdf($id){
+        $days = [__('site.sunday'),__('site.monday'),__('site.Tuesday'),__('site.Wednesday'),__('site.Thursday')];
+        $times = ['8:00am - 9:40am','10:00am - 11:50am' , '12:00pm: - 1:30am'];
+        $table = Time_table::find($id);
+        $time_units = Time_unit::all();
+        $pdf = PDF::loadView('pdf.tables.table',compact('table', 'time_units', 'days','times'));
+        return $pdf->stream('table.pdf');
     }
     
     public function store(CourseAddRequest $request){

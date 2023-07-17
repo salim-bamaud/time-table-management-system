@@ -31,9 +31,9 @@ class DepatmentAddRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'يجب إدخال الإسم',
-            'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
-            'name.unique'=>'الإسم موجود مسبقاً',
+            'name.required'=>__("site.name-required"),
+            'name.max'=>__('site.max-100'),
+            'name.unique'=>__('site.name-unique'),
         ];
     }
 }

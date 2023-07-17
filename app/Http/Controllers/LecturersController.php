@@ -33,8 +33,9 @@ class LecturersController extends Controller
         return redirect()->back()->with(['success'=>'تم الحفظ بنجاح']);
     }
     public function show(){
+        $departments = Department::all();
         $lecturers = Lecturer::select('id','name','short_name','collage','dep_id','degree','contract_status')->get();
-        return view('dashboard.lecturers.show',compact('lecturers'));
+        return view('dashboard.lecturers.show',compact('lecturers','departments'));
     }
     public function show_table($id){
         $lecturer = Lecturer::find($id);

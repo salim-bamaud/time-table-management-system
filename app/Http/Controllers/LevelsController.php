@@ -29,8 +29,9 @@ class LevelsController extends Controller
         return redirect()->back()->with(['success'=>'تم الحفظ بنجاح']);
     }
     public function show(){
+        $departments = Department::all();
         $levels = Level::select('id','name','dep_id','students_num')->get();
-        return view('dashboard.levels.show',compact('levels'));
+        return view('dashboard.levels.show',compact('levels', 'departments'));
     }
 
     public function show_table($id){

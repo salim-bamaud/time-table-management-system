@@ -35,16 +35,16 @@ class CourseAddRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'يجب إدخال الإسم',
-            'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
-            'name.unique'=>'الإسم موجود مسبقاً',
-            'dep_id.required'=>'يجب إدخال القسم',
-            'lev_id.required'=>'يجب إدخال المستوى',
-            'dep_id.numeric'=>'هناك خطأ في إدخال القسم',
-            'lev_id.numeric'=>'هناك خطأ في إدخال المستوى',
-            'type.required'=>'يجب إدخال النوع',
-            'time_units_in_week.required'=>'يجب إدخال عدد المحاضرات الاسبوعية',
-            'time_units_in_week.numeric'=>'  عدد المحاضرات الاسبوعية يجب أن يكون رقم'
+            'name.required'=>__("site.name-required"),
+            'name.max'=>__('site.max-100'),
+            'name.unique'=>__('site.name-unique'),
+            'dep_id.required'=>__("site.departmrnt-required"),
+            'lev_id.required'=>__("site.level-required"),
+            'dep_id.numeric'=>__("site.departmrnt-numeric"),
+            'lev_id.numeric'=>__("site.level-numeric"),
+            'type.required'=>__("site.type-required"),
+            'time_units_in_week.required'=>__("site.num-of-lectures-required"),
+            'time_units_in_week.numeric'=>__("site.num-of-lectures-numeric")
         ];
     }
 }

@@ -30,15 +30,15 @@ class LecturerAddRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'يجب إدخال الإسم',
-            'collage.required'=>'يجب إدخال أسم الكلية',
-            'dep_id.required'=>'يجب إدخال القسم',
-            'degree.required'=>'يجب إدخال الدرجة العلمية',
-            'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
-            'name.unique'=>'الإسم موجود مسبقاً',
-            'short_name.required'=>'الإسم المختصر مطلوب',
-            'short_name.unique'=>'الإسم المختصر موجود مسبقاً',
-            'short_name.max'=>'الإسم المختصر يجب أن لا يزيد عن 20 حرف ',
+            'name.required'=>__("site.name-required"),
+            'collage.required'=>__("site.collage-required"),
+            'dep_id.required'=>__("site.departmrnt-required"),
+            'degree.required'=>__("site.degree-required"),
+            'name.max'=>__('site.max-100'),
+            'name.unique'=>__('site.name-unique'),
+            'short_name.required'=>__("site.short-name-required"),
+            'short_name.unique'=>__("site.short-name-unique"),
+            'short_name.max'=>__("site.short-name-max"),
         ];
     }
 }

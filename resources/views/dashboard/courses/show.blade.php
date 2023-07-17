@@ -58,7 +58,7 @@
                                     @else
                                     <form method="POST" action="{{ route('courses.connect', $course->id) }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-success"> {{__('site.connect-with-lecturer')}} </button>
+                                        <button class="inline-block" type="submit" class="btn btn-success"> {{__('site.connect-with-lecturer')}} </button>
                                     </form>
                                     @endif
                                 </td>

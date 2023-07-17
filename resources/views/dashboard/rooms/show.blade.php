@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <a href="findemptyrooms" class="btn btn-primary"> {{__('site.find-empty-room')}} </a> 
             <a href="findemptylaps" class="btn btn-primary"> {{__('site.find-empty-lap')}} </a> 
-            <a href="#" class="btn btn-primary"> {{__('site.show-laps-table')}} </a>
+            <a href="show-laps-table" class="btn btn-primary"> {{__('site.show-laps-table')}} </a>
             <br><br>
             <div class="card">
                 <div class="card-header">{{__('site.Rooms')}}</div>
@@ -17,6 +17,16 @@
                             {{Session::get('success')}}
                         </div>
                         @endif
+
+                        <div class="form-group">
+                            <label> {{__('site.type')}} :</label>
+                            <select class="form-control" id="type">
+                                <option value=""> {{__('site.all')}} </option>
+                                <option value="0">  {{__('site.room')}}  </option>
+                                <option value="1">  {{__('site.lap')}}  </option>
+                            </select>
+                        </div>
+
                         <table class="table">
                             <thead>
                             <tr>
@@ -28,11 +38,11 @@
                             </thead>
                             <tbody>
                             @foreach ($rooms as $room )
-                            <tr>                             
+                            <tr data-department="{{$room->type}}">                             
                                 <td>{{$room->name}}</td>
                                 <td>
                                     @if ($room->type == 0)
-                                        {{__('site.Room')}}
+                                        {{__('site.room')}}
                                         @else
                                         {{__('site.lap')}}
                                     @endif
@@ -55,4 +65,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#type').change(function() {
+            var room_type = $(this).val();
+            $('tbody tr').each(function() {
+                if (room_type == "" || $(this).data('department') == room_type) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
 @endsection

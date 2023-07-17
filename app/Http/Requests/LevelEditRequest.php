@@ -33,11 +33,11 @@ class LevelEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'يجب إدخال الإسم',
-            'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
-            'dep_id.required'=>'القسم مطلوب',
-            'students_num.required'=>'أدخل عدد الطلاب في القسم',
-            'students_num.numeric'=>'يرجى إدخال أرقام فقط في خانة عدد الطلاب',
+            'name.required'=>__("site.name-required"),
+            'name.max'=>__('site.max-100'),
+            'dep_id.required'=>__("site.departmrnt-required"),
+            'students_num.required'=>__("site.num-of-students-required"),
+            'students_num.numeric'=>__("site.num-of-students-numeric"),
         ];
     }
 }

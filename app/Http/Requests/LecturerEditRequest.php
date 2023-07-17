@@ -36,12 +36,12 @@ class LecturerEditRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'=>'يجب إدخال الإسم',
-            'name.max'=>'الإسم يجب أن لا يزيد عن 100 رمز  ',
-            'name.unique'=>'الإسم موجود مسبقاً',
-            'short_name.required'=>'الإسم المختصر مطلوب',
-            'short_name.max'=>'الإسم المختصر يجب أن لا يزيد عن 20 حرف ',
-            'short_name.unique'=>'الإسم المختصر موجود مسبقاً',
+            'name.required'=>__("site.name-required"),
+            'name.max'=>__('site.max-100'),
+            'name.unique'=>__('site.name-unique'),
+            'short_name.required'=>__("site.short-name-required"),
+            'short_name.unique'=>__("site.short-name-unique"),
+            'short_name.max'=>__("site.short-name-max"),
         ];
     }
 }

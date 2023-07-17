@@ -107,4 +107,15 @@ class RoomsController extends Controller
         $pdf = PDF::loadView('pdf.rooms',compact('rooms'));
         return $pdf->stream('rooms.pdf');
     }
+
+    public function show_laps_table(){
+        $laps = Room::where('type','1')->get();
+        $time_units = Time_unit::all();
+        $days = ['Sunday','Monday','Tuesday','Wednesday','Thursday'];
+        $times = ['8:00am - 9:40am','10:00am - 11:50am' , '12:00pm: - 1:30am'];
+        //dd($laps);
+        $pdf = PDF::loadView('pdf.tables.laps-table',compact('laps','time_units','days','times'));
+        return $pdf->stream('laps-table.pdf');
+    }
+    
 }

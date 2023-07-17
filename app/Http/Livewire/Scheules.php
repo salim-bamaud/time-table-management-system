@@ -13,6 +13,7 @@ use App\Models\Level;
 
 class Scheules extends Component
 {
+    
     public $department;
     public $level;
     public $courses;
@@ -68,4 +69,8 @@ class Scheules extends Component
             }}
             session()->flash('message' , 'Saved Sucssefully.');
     }
+
+    // public function deleteCourse($id){
+    //     $this->courses = $this->courses->forget($id);
+    // }
 }
